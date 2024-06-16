@@ -1,3 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+    --primary-color: #f96237;
+    --background-color: #ffffff;
+    --text-color: #333333;
+}
+
+* {
+    font-family: "Open Sans";
+    box-sizing: border-box;
+}
+
+/* regular */
+
+@font-face {
+    font-family: "Open Sans";
+    src: url("/fonts/OpenSans-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* medium */
+@font-face {
+    font-family: "Open Sans";
+    src: url("/fonts/OpenSans-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+/* semibold */
+@font-face {
+    font-family: "Open Sans";
+    src: url("/fonts/OpenSans-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* bold */
+@font-face {
+    font-family: "Open Sans";
+    src: url("/fonts/OpenSans-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gabriela";
+    src: url("/fonts/Gabriela-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+/*
+h2 {
+    font-size: 36px;
+    color: var(--text-color);
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent-color);
+} */
