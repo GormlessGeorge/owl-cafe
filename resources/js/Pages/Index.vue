@@ -3,12 +3,9 @@ import { Head, Link } from '@inertiajs/vue3';
 import MainContainer from '../Layouts/MainContainer.vue';
 import HeroScreen from '../Components/Index/HeroScreen.vue';
 import AboutScreen from '../Components/Index/AboutScreen.vue';
-import RecomendedScreen from '../Components/Index/RecomendedScreen.vue';
-({
-    message: {
-        type: String
-    }
-});
+import RecommendedScreen from '../Components/Index/RecommendedScreen.vue';
+import EventsScreen from '../Components/Index/EventsScreen.vue';
+
 
 // defineOptions({ layout: MainContainer })
 
@@ -19,7 +16,8 @@ import RecomendedScreen from '../Components/Index/RecomendedScreen.vue';
     <Head title="Добро пожаловать в кафе Сова"></Head>
     <HeroScreen></HeroScreen>
     <AboutScreen></AboutScreen>
-    <RecomendedScreen></RecomendedScreen>
+    <RecommendedScreen></RecommendedScreen>
+    <EventsScreen></EventsScreen>
 </template>
 
 <style lang="scss">

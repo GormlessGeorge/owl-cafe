@@ -24,7 +24,8 @@
             </div>
         </MainContainer>
 
-        <img class="about-screen__mushrooms" src="/img/mushrooms.png" alt="mushrooms image">
+        <img class="about-screen__mushrooms about-screen__mushrooms-left" src="/img/mushrooms.png" alt="mushrooms image">
+        <img class="about-screen__mushrooms about-screen__mushrooms-right" src="/img/mushrooms2.png" alt="mushrooms image">
     </section>
 </template>
 
@@ -106,6 +107,13 @@ import MainContainer from '@/Layouts/MainContainer.vue';
         display: block;
         position: absolute;
         z-index: -10;
+
+        &-left {
+            left: 0;
+        }
+        &-right {
+            right: 0;
+        }
     }
 }
 </style>

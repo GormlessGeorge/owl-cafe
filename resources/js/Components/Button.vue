@@ -39,5 +39,10 @@ defineProps({
         width: 225px;
         margin: 35px auto 0 auto;
     }
+
+    &__events {
+        width: 225px;
+        margin: 35px auto 0 auto;
+    }
 }
 </style>
