@@ -5,8 +5,13 @@
 </template>
 
 <script setup>
-
+defineProps({
+    buttonClass: {
+        type: String
+    }
+});
 </script>
+
 <style scoped lang="scss">
 .btn {
     height: 54px;
@@ -28,6 +33,11 @@
     &__hero {
         margin-top: 65px;
         width: 225px;
+    }
+
+    &__about {
+        width: 225px;
+        margin: 35px auto 0 auto;
     }
 }
 </style>

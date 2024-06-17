@@ -60,6 +60,14 @@ h4,
 p {
     margin: 0;
 }
+
+.owl-icon {
+    display: block;
+    width: 49px;
+    height: 29px;
+    margin: 0 auto;
+    margin-top: 7px;
+}
 /*
 h2 {
     font-size: 36px;
