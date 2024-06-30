@@ -43,7 +43,7 @@ import MainContainer from '@/Layouts/MainContainer.vue';
 .events-screen {
     height: 500px;
     position: relative;
-    margin-top: 200px;
+    margin-top: 300px;
 
     &__wrapper {
         display: flex;
@@ -62,6 +62,7 @@ import MainContainer from '@/Layouts/MainContainer.vue';
         text-align: center;
         font-family: 'Gabriela';
         font-weight: 400;
+        color: var(--text-color);
     }
 
     &__descr {
@@ -107,9 +108,12 @@ import MainContainer from '@/Layouts/MainContainer.vue';
         z-index: -10;
 
         &-left {
+            top: 50%;
             left: 0;
         }
+
         &-right {
+            top: 50%;
             right: 0;
         }
     }

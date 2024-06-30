@@ -5,7 +5,7 @@
             <TheHeader></TheHeader>
             <h1 class="hero-screen__title">Кафе Сова</h1>
             <h2 class="hero-screen__subtitle">Там, где вкус становится искусством</h2>
-            <Button class="btn__hero">Заказать доставку</Button>
+            <Button class="btn__hero"><Link class="header__link" href="/menu">Заказать доставку</Link></Button>
             <div class="hero-screen__social">
                 <a><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -31,6 +31,7 @@
 
 <script setup>
 import MainContainer from '@/Layouts/MainContainer.vue';
+import {Link} from '@inertiajs/vue3';
 </script>
 
 <style scoped lang="scss">

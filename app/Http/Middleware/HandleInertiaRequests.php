@@ -35,6 +35,16 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'flash' => [
+                'success' => fn () => $request->session()->get('success')
+                
+            ],
+            'cart' => [
+                'cartInternals' => fn () => session()->get('shoppingCart'),
+                'cartSize' => fn () => session()->get('cartSize'),
+                'cartTotalAmount' => session()->get('cartTotalAmount')
+                // 
+            ],
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),

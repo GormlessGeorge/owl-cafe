@@ -1,13 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --primary-color: #f96237;
     --background-color: #ffffff;
     --text-color: #333333;
+    --input-plh-color: #6B6B6B;
 }
 
 * {
     font-family: "Open Sans";
     box-sizing: border-box;
 }
+
+/* Light */
+@font-face {
+    font-family: "Open Sans";
+    src: url("/fonts/OpenSans-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
 
 /* regular */
 

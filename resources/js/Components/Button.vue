@@ -14,6 +14,7 @@ defineProps({
 
 <style scoped lang="scss">
 .btn {
+    display: block;
     height: 54px;
     font-size: 18px;
     font-weight: 600;
@@ -39,10 +40,20 @@ defineProps({
         width: 225px;
         margin: 35px auto 0 auto;
     }
+    &__rec {
 
+        width: 200px;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
     &__events {
         width: 225px;
         margin: 35px auto 0 auto;
+    }
+
+    &__cart {
+        width: 200px;
+        margin-top: 40px;
     }
 }
 </style>

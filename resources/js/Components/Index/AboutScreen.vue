@@ -24,8 +24,10 @@
             </div>
         </MainContainer>
 
-        <img class="about-screen__mushrooms about-screen__mushrooms-left" src="/img/mushrooms.png" alt="mushrooms image">
-        <img class="about-screen__mushrooms about-screen__mushrooms-right" src="/img/mushrooms2.png" alt="mushrooms image">
+        <img class="about-screen__mushrooms about-screen__mushrooms-left" src="/img/mushrooms.png"
+            alt="mushrooms image">
+        <img class="about-screen__mushrooms about-screen__mushrooms-right" src="/img/mushrooms2.png"
+            alt="mushrooms image">
     </section>
 </template>
 
@@ -58,7 +60,7 @@ import MainContainer from '@/Layouts/MainContainer.vue';
         font-size: 36px;
         font-family: 'Gabriela';
         font-weight: 400;
-
+        color: var(--text-color);
         span {
             font-family: 'Gabriela';
             font-weight: 500;
@@ -88,7 +90,7 @@ import MainContainer from '@/Layouts/MainContainer.vue';
         }
 
         &:nth-child(2) {
-            margin: 22px 22px 0 0;
+            margin: 0px 22px 0 0;
         }
     }
 
@@ -109,9 +111,12 @@ import MainContainer from '@/Layouts/MainContainer.vue';
         z-index: -10;
 
         &-left {
+            top: 75%;
             left: 0;
         }
+
         &-right {
+            top: 75%;
             right: 0;
         }
     }
