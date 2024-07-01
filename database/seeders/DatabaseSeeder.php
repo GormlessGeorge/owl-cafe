@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
         \App\Models\Category::factory(10)->create();
         \App\Models\MenuItem::factory(10)->create();
         $this->call(AdminSeeder::class); 
-        // $this->call(RecommendedMenuItemsTableSeeder::class);
     }
 }

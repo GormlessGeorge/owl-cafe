@@ -14,9 +14,10 @@ class MenuPageController extends Controller
     public function index()
     {
         // session()->put(['baba'=> [1, 2, 3, 4, 5]]);
-        $menuItems = MenuItem::all();
+        $menuItems = MenuItem::with('category')->get();
+        $categories = Category::all();
         // $size = sizeOf(session()->get('baba'));
-        return Inertia::render('Menu/Index', ['menuItems' => $menuItems]);
+        return Inertia::render('Menu/Index', ['menuItems' => $menuItems, 'categories' => $categories]);
     }
     // public function shit()
     // {

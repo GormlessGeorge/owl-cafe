@@ -162,8 +162,8 @@
         
     </section>
     <TheFooter></TheFooter>
-                <img class="cart__dumplings cart__dumplings-left" src="/img/dumplings1.png" alt="dumplings image">
-                <img class="cart__dumplings cart__dumplings-right" src="/img/dumplings2.png" alt="dumplings image">
+    <img class="cart__dumplings cart__dumplings-left" src="/img/dumplings1.png" alt="dumplings image">
+    <img class="cart__dumplings cart__dumplings-right" src="/img/dumplings2.png" alt="dumplings image">
 </template>
 
 <script setup>

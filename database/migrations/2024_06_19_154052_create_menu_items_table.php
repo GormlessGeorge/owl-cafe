@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();  // Путь к изображению блюда
             $table->unsignedBigInteger('category_id');  // Внешний ключ к таблице categories
             $table->timestamps();  // Временные метки created_at и updated_at
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

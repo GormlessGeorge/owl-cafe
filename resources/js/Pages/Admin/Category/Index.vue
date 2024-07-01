@@ -3,7 +3,7 @@
         <Link class="button" href="categories/create">Создать категорию</Link>
         <div>
         <h1>Категории</h1>
-        <div v-for="category in categories" :key="category.id">
+        <div class="category__flex" v-for="category in categories" :key="category.id">
             <div>
                 <Link :href="route('categories.show', category.id)">{{ category.name }}</Link>
             </div>
@@ -29,6 +29,12 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
+.category__flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
 h1 {
     font-size: 36px;
 }
