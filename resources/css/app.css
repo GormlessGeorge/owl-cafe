@@ -6,7 +6,7 @@
     --primary-color: #f96237;
     --background-color: #ffffff;
     --text-color: #333333;
-    --input-plh-color: #6B6B6B;
+    --input-plh-color: #6b6b6b;
 }
 
 * {
@@ -21,7 +21,6 @@
     font-weight: 300;
     font-style: normal;
 }
-
 
 /* regular */
 
@@ -81,6 +80,13 @@ p {
     height: 29px;
     margin: 0 auto;
     margin-top: 7px;
+}
+
+@media (max-width: 575px) {
+    .owl-icon {
+        width: 40px;
+        height: 22px;
+    }
 }
 /*
 h2 {

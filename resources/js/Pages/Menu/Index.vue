@@ -6,37 +6,36 @@
       <!-- <p v-if="flash"> {{ flash }}</p> -->
 
       <div class="tabs">
-		<div class="tabs-header">
-			<button class="tabs-btn" @click="activeTab = 1" :class="{ active: activeTab === 1 }">Вкладка 1</button>
-			<button class="tabs-btn" @click="activeTab = 2" :class="{ active: activeTab === 2 }">Вкладка 2</button>
-			<button class="tabs-btn" @click="activeTab = 3" :class="{ active: activeTab === 3 }">Вкладка 3</button>
-		</div>
-		<div class="tabs-body">
-			<div class="tabs-body-item" v-show="activeTab === 1">
-				Содержимое вкладки 1
-			</div>
-			<div class="tabs-body-item" v-show="activeTab === 2">
-				Содержимое вкладки 2
-			</div>
-			<div class="tabs-body-item" v-show="activeTab === 3">
-				Содержимое вкладки 3
-			</div>
-		</div>
-	</div>
-
-      <!-- <div class="card__wrapper">
-        <MenuItemCard
-          v-for="menuItem in menuItems"
-          :imageUrl="'storage/' + menuItem.image_path"
-          :key="menuItem.id"
-          :menuItem="menuItem"
-        />
-      </div> -->
+        <div class="tabs-header">
+          <button
+            class="tabs-btn"
+            v-for="category in categories"
+            :key="category.id"
+            @click="activeTab = category.id"
+            :class="{ active: activeTab === category.id }"
+          >
+            {{ category.name }}
+          </button>
+        </div>
+        <div class="tabs-body">
+          <div class="card__wrapper">
+            <!-- <transition-group name="fade"> -->
+              <MenuItemCard
+                v-for="menuItem in menuItems"
+                :imageUrl="'storage/' + menuItem.image_path"
+                :key="menuItem.id"
+                v-show="activeTab === menuItem.category.id"
+                :menuItem="menuItem"
+              />
+            <!-- </transition-group> -->
+          </div>
+        </div>
+      </div>
     </MainContainer>
   </section>
 
   <CartWidget></CartWidget>
-  <TheFooter></TheFooter>
+
   <img
     class="menu__soup menu__soup-left"
     src="/img/soup1.png"
@@ -47,6 +46,7 @@
     src="/img/soup2.png"
     alt="soup image"
   />
+  <TheFooter></TheFooter>
 </template>
 
 
@@ -57,18 +57,16 @@ import CartWidget from "../../Components/CartWidget.vue";
 import MenuItemCard from "@/Components/MenuItemCard.vue";
 import MainContainer from "@/Layouts/MainContainer.vue";
 import TheFooter from "../../Components/TheFooter.vue";
-import { ref } from "vue";
-import { router, Link, useRemember } from "@inertiajs/vue3";
-import { computed } from "vue";
-
-import { usePage } from "@inertiajs/vue3";
 import MenuItemCardVue from "../../Components/MenuItemCard.vue";
+import { ref, computed } from "vue";
+import { router, Link, useRemember, usePage } from "@inertiajs/vue3";
 
 const page = usePage();
 
 const flash = computed(() => page.props.flash.success);
 defineProps({
-  menuItems: Array, // Здесь вы можете определить свои props
+  menuItems: Array,
+  categories: Array, // Здесь вы можете определить свои props
 });
 
 const activeTab = ref(1);
@@ -79,25 +77,36 @@ const activeTab = ref(1);
 
 <style scoped lang="scss">
 .tabs-header {
-  border-bottom: 3px solid #eee;
+  //   border-bottom: 3px solid #eee;
+  margin-top: 25px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  //   flex-direction: row;
+  //   flex-wrap: wrap;
 }
 .tabs-btn {
   font-size: 18px;
   border: none;
-  display: inline-block;
-  background: #fff;
-  padding: 10px 25px;
-  text-align: center;
+  // width: 14%;
+  //   background: #fff;
   cursor: pointer;
-  margin-bottom: -3px;
-  border-bottom: 3px solid #eee;
+  margin-top: 25px;
+  padding-bottom: 10px;
+  /* margin-bottom: -3px; */
+  color: var(--text-color);
+  transition: all 0.2s ease;
+  border-bottom: 2px solid rgb(248, 248, 248);
 }
 .tabs-btn.active {
-  color: #5fa03a;
-  border-bottom: 3px solid #5fa03a;
+  font-weight: 600;
+
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
 }
 .tabs-body-item {
   padding: 20px 0;
+  min-height: 300px;
 }
 
 .menu {
@@ -142,14 +151,22 @@ const activeTab = ref(1);
   border-radius: 10px;
   background-color: lightgray;
 }
-
-button {
-  display: block;
-  margin: 0 auto;
-  margin-top: 20px;
-  background-color: var(--primary-color);
-  height: 54px;
-  color: white;
-  width: 150px;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
 }
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+// button {
+//   display: block;
+//   margin: 0 auto;
+//   margin-top: 20px;
+//   background-color: var(--primary-color);
+//   height: 54px;
+//   color: white;
+//   width: 150px;
+// }
 </style>

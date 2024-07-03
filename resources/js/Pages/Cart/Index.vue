@@ -7,7 +7,7 @@
             <Button class="btn__cart" v-if="!cartSize"><Link class="cart__menu-link" href="/menu">Меню</Link></Button>
             <div class="cart__wrapper" v-if="cartSize">
 
-                <form class="order-form">
+                <form class="order-form" id="orderForm">
                     <div class="order-form__contact-info block-wrapper">
                         <p class="block-wrapper__title">Контактная информация</p>
                         
@@ -95,7 +95,7 @@
 
                     <div class="order-form__payment-type block-wrapper">
                         <p class="block-wrapper__title">Способ оплаты</p>
-                        <div class="radio-buttons__flex">
+                        <div class="radio-buttons__flex radio-buttons__flex-payment-type">
                         <div class="radio">
                                  <input id="radio-5" name="payment" type="radio" checked value="Онлайн">
                                  <label for="radio-5" class="radio-label">Онлайн</label>
@@ -113,10 +113,7 @@
                         </div>
                     </div>
 
-                    <p class="cart__to-pay">К оплате: {{cartTotalAmount}}</p>
                     
-                    
-                    <Button btnClass="cart__create-order-btn" type="submit">Оформить заказ</Button>
                 </form>
                 
                 
@@ -156,7 +153,10 @@
                 </div>
               </div>
             
-
+              <p class="cart__to-pay" v-if="cartSize">К оплате: {{cartTotalAmount}}</p>
+                    
+                    
+                    <Button v-if="cartSize" btnClass="cart__create-order-btn" type="submit" form="orderForm" >Оформить заказ</Button>
             <!-- <Link href="clear-cart" method="get" preserve-state preserve-scroll>Очистисть корзину</Link> -->
         </MainContainer>
         
@@ -581,5 +581,101 @@ $color2: #f96237;
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+@media (max-width: 576px) {
+  .cart {
+    &__title {
+      font-size: 30px;
+    }
+    &__wrapper {
+      margin-top: 50px;
+      flex-direction: column;
+    }
+    &__items {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    &__item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 90px 150px;
+      grid-template-rows: 53px 25px 30px;
+      -moz-column-gap: 15px;
+      column-gap: 15px;
+      row-gap: 5px;
+      &-name {
+        font-size: 16px;
+      }
+      
+    }
+    &__dumplings {
+      display: none;
+    }
+  }
+
+  .order-form {
+    width: unset;
+
+    &__contact-info {
+      height: 250px;
+    }
+    &__comment {
+      textarea {
+        width: 270px;
+      }
+    }
+    &__delivery-type {
+      height: 150px;
+    }
+    &__address {
+      height: 250px;
+    }
+    &__order-time {
+      height: 150px;
+    }
+    &__payment-type {
+      height: 210px;
+    }
+  }
+
+  .inputs-flex[data-v-35eeee42] {
+    gap: 12px;
+  }
+
+  .input-wrapper {
+    width: 270px;
+    &__phone {
+      margin-left: 0;
+    }
+    &__email {
+      margin-top: 0;
+    }
+
+    &__house {
+      margin-left: 0;
+    }
+    &__flat {
+      margin-left: 0;
+    }
+  }
+
+  .radio-buttons {
+    &__flex {
+      flex-direction: column;
+      gap: 10px;
+      &-payment-type {
+        gap: 20px;
+      }
+    }
+  }
+
+  .radio__right {
+    margin-left: 0;
+  }
+
+  
 }
 </style>

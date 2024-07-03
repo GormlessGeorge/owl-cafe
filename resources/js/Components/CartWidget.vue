@@ -122,4 +122,19 @@ const removeHighlight = (event) => {
 .fade-leave-to {
   opacity: 0;
 }
+
+@media (max-width: 576px) {
+  .cart-widget {
+    width: 65px;
+    height: 65px;
+
+    &__amount {
+      font-size: 16px;
+    }
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
 </style>

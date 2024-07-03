@@ -56,7 +56,7 @@ function truncate(value, length) {
   padding: 17px;
   width: 285px;
   height: 495px;
-  // background-color: lightblue;
+  background-color: var(--background-color);
   margin-top: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.3);
@@ -136,6 +136,28 @@ function truncate(value, length) {
       background-color: var(--background-color);
       border: 2px solid #51a068;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .card {
+    padding: 17px;
+    width: 234px;
+    height: 495px;
+    // background-color: lightblue;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    &__image {
+      width: 200px;
+      height: 200px;
+      
     }
   }
 }

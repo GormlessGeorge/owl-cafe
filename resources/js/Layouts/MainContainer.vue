@@ -7,7 +7,13 @@
 
 <style scoped lang="scss">
 .container {
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
+}
+
+@media (max-width: 575px) {
+  .container {
+    max-width: 320px;
+  }
 }
 </style>

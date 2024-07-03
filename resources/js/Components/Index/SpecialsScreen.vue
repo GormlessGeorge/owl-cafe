@@ -18,6 +18,7 @@
             alt="special image"
           />
         </div>
+
         <div
           class="specials-screen__special"
           @mouseenter="highlightSpecial"
@@ -67,6 +68,16 @@
         </div>
       </div>
     </MainContainer>
+    <img
+      class="specials-screen__sweets specials-screen__sweets-left"
+      src="/img/sweets1.png"
+      alt="dumplings image"
+    />
+    <img
+      class="specials-screen__sweets specials-screen__sweets-right"
+      src="/img/sweets2.png"
+      alt="dumplings image"
+    />
   </section>
 </template>
 
@@ -101,12 +112,14 @@ const removeHighlight = (event) => {
 <style scoped lang="scss">
 .specials-screen {
   margin-top: 290px;
-  height: 620px;
+  min-height: 620px;
+  position: relative;
 
   &__wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 30px;
   }
 
@@ -126,7 +139,7 @@ const removeHighlight = (event) => {
     height: 390px;
     border-radius: 6px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease;
     &-delivery {
       background-color: var(--primary-color);
     }
@@ -140,7 +153,7 @@ const removeHighlight = (event) => {
     font-weight: normal;
     font-size: 24px;
     color: var(--text-color);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease;
     &-delivery {
       color: var(--background-color);
     }
@@ -154,7 +167,7 @@ const removeHighlight = (event) => {
     margin-top: 30px;
     font-size: 16px;
     color: var(--text-color);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease;
     &-delivery {
       color: var(--background-color);
     }
@@ -174,7 +187,7 @@ const removeHighlight = (event) => {
     position: absolute;
     left: 105px;
     top: 215px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease;
     &-active {
       left: 95px;
       top: 200px;
@@ -187,6 +200,68 @@ const removeHighlight = (event) => {
     transition: all 0.5s ease-in-out;
     &-active {
       color: var(--background-color);
+    }
+  }
+
+  &__sweets {
+    display: block;
+    position: absolute;
+    z-index: -10;
+
+    &-left {
+      top: 80%;
+      left: 0;
+    }
+    &-right {
+      top: 80%;
+      right: 0;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .specials-screen {
+    margin-top: 150px;
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__wrapper {
+      justify-content: center;
+      gap: 20px;
+    }
+
+    &__special {
+      padding: 50px 0 0 30px;
+      width: 285px;
+      height: 285px;
+    }
+
+    &__img {
+      position: absolute;
+      width: 150px;
+      left: 175px;
+      top: 185px;
+      transition: all 0.3s ease;
+      &-active {
+        left: 165px;
+        top: 175px;
+      }
+    }
+
+
+    &__sweets {
+      width: 200px;
+      &-left {
+        top: 105%;
+        left: 0;
+      }
+
+      &-right {
+        top: 105%;
+        right: 0;
+      }
     }
   }
 }
