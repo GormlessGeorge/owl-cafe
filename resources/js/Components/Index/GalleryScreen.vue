@@ -34,7 +34,7 @@ import MainContainer from "@/Layouts/MainContainer.vue";
 <style scoped lang="scss">
 .gallery {
   margin-top: 300px;
-  margin-bottom: 150px;
+  margin-bottom: 110px;
   &__wrapper {
     display: flex;
     flex-direction: row;
@@ -64,7 +64,7 @@ import MainContainer from "@/Layouts/MainContainer.vue";
     }
   }
 }
-@media (max-width: 576px) {
+@media (max-width: 575px) {
   .gallery {
     &__wrapper {
       justify-content: center;

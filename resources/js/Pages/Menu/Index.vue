@@ -1,7 +1,8 @@
 <template>
   <section class="menu">
+    <TheHeader></TheHeader>
     <MainContainer>
-      <TheHeader></TheHeader>
+
       <h2 class="menu__title">Меню кафе и доставки</h2>
       <!-- <p v-if="flash"> {{ flash }}</p> -->
 
@@ -20,13 +21,20 @@
         <div class="tabs-body">
           <div class="card__wrapper">
             <!-- <transition-group name="fade"> -->
-              <MenuItemCard
-                v-for="menuItem in menuItems"
-                :imageUrl="'storage/' + menuItem.image_path"
-                :key="menuItem.id"
-                v-show="activeTab === menuItem.category.id"
-                :menuItem="menuItem"
-              />
+            <MenuItemCardMobile
+              v-for="menuItem in menuItems"
+              :imageUrl="'storage/' + menuItem.image_path"
+              :key="menuItem.id"
+              v-show="activeTab === menuItem.category.id"
+              :menuItem="menuItem"
+            />
+            <MenuItemCard
+              v-for="menuItem in menuItems"
+              :imageUrl="'storage/' + menuItem.image_path"
+              :key="menuItem.id"
+              v-show="activeTab === menuItem.category.id"
+              :menuItem="menuItem"
+            />
             <!-- </transition-group> -->
           </div>
         </div>
@@ -58,6 +66,7 @@ import MenuItemCard from "@/Components/MenuItemCard.vue";
 import MainContainer from "@/Layouts/MainContainer.vue";
 import TheFooter from "../../Components/TheFooter.vue";
 import MenuItemCardVue from "../../Components/MenuItemCard.vue";
+import MenuItemCardMobile from "../../Components/MenuItemCardMobile.vue";
 import { ref, computed } from "vue";
 import { router, Link, useRemember, usePage } from "@inertiajs/vue3";
 
@@ -70,6 +79,9 @@ defineProps({
 });
 
 const activeTab = ref(1);
+
+
+
 </script>
 
 
@@ -169,4 +181,31 @@ const activeTab = ref(1);
 //   color: white;
 //   width: 150px;
 // }
+
+@media (max-width: 575px) {
+  .menu {
+    &__title {
+      font-size: 30px;
+    }
+  }
+
+  .tabs-header {
+    overflow-x: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  .tabs-btn {
+    font-size: 14px;
+    width: 140px;
+  }
+
+  .card__wrapper {
+  display: flex;
+  gap: 10px;
+  //   width: 1250px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  //   align-items: space-between;
+}
+}
 </style>

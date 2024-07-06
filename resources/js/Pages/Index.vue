@@ -17,6 +17,7 @@ defineProps({
 
 <template>
   <Head title="Добро пожаловать в кафе Сова"></Head>
+  <!-- <Link class="payment" method="post" href="/payment">Оплатить</Link> -->
   <HeroScreen></HeroScreen>
   <AboutScreen></AboutScreen>
    <RecommendedScreen :recommended-menu-items="recommendedMenuItems"></RecommendedScreen>
@@ -29,4 +30,8 @@ defineProps({
 </template>
 
 <style lang="scss">
+.payment {
+  width: 100px;
+  height: 100px;
+}
 </style>

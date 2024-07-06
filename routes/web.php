@@ -13,14 +13,15 @@ use App\Http\Controllers\AboutUsPageController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\ContactsPageController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
 
 //user routes
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [IndexController::class, 'index'])->name('mainpage.index');
 Route::get('/menu', [MenuPageController::class, 'index']);
 Route::get('/cart', [CartPageController::class, 'index']);
 Route::get('/contacts', [ContactsPageController::class, 'index']);
 Route::get('/about-us', [AboutUsPageController::class, 'index']);
-
+Route::post('/payment', [PaymentController::class, 'create']);
 //testing
 // Route::post('/menu', [MenuPageController::class, 'shit']);
 // Route::post('/menu', [MenuPageController::class, 'shit']);

@@ -1,7 +1,7 @@
 <template>
   <section class="hero-screen">
+    <TheHeader></TheHeader>
     <MainContainer>
-      <TheHeader></TheHeader>
       <h1 class="hero-screen__title">Кафе Сова</h1>
       <h2 class="hero-screen__subtitle">Там, где вкус становится искусством</h2>
       <Button class="btn__hero"

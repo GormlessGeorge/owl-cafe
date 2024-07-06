@@ -6,13 +6,13 @@ export default defineConfig({
 
     plugins: [
         laravel({
-            input: ['resources/js/app.js', 'resources/sass/app.scss'],
+            input: 'resources/js/app.js',
             ssr: 'resources/js/ssr.js',
             refresh: true,
-            postcss: [
-				tailwindcss(),
-				autoprefixer(),
-			],
+            // postcss: [
+			// 	tailwindcss(),
+			// 	autoprefixer(),
+			// ],
         }),
         
         vue({

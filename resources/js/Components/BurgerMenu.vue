@@ -15,16 +15,47 @@
           <ul class="sidemenu__list">
             <li class="sidemenu__item">
               <Link
+                href="/"
+                :class="{ active: $page.url === '/' }"
+                class="header__link"
+                >ГЛАВНАЯ</Link
+              >
+            </li>
+            <li class="sidemenu__item">
+              <Link
                 href="/menu"
                 :class="{ active: $page.url === 'menu' }"
                 class="header__link"
                 >МЕНЮ</Link
               >
             </li>
-            <li class="sidemenu__item"><a href="">About</a></li>
-            <li class="sidemenu__item"><a href="">Blog</a></li>
-            <li class="sidemenu__item"><a href="">Work</a></li>
-            <li class="sidemenu__item"><a href="">Link</a></li>
+            <li class="sidemenu__item">
+              <Link
+                href="/about-us"
+                :class="{ active: $page.url === '/about-us' }"
+                class="header__link"
+                >О НАС</Link
+              >
+            </li>
+              
+            <li class="sidemenu__item">
+              <Link
+                href="/contacts"
+                :class="{ active: $page.url === '/contacts' }"
+                class="header__link"
+                >КОНТАКТЫ</Link
+              >
+            </li>
+              
+            <li class="sidemenu__item">
+              <Link
+                href="/cart"
+                :class="{ active: $page.url === '/cart' }"
+                class="header__link"
+                >КОРЗИНА</Link
+              >
+            </li>
+              
           </ul>
         </div>
       </nav>
@@ -37,7 +68,7 @@
 <script>
 import { Link } from "@inertiajs/vue3";
 export default {
-  components: {Link},
+  components: { Link },
   data() {
     return {
       navOpen: false,
@@ -55,16 +86,17 @@ export default {
 
 <style scoped lang="scss">
 #sidemenu {
+  display: none;
   nav {
     width: 200px;
-    // height: calc(100% - #{$headerHeight} - #{$footerHeight});
+    // height: calc(100% - #{$headerHeight} - #{$footerHeight});s
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - calc(100vh - 100%));
     background: rgba(27, 27, 27, 0.938);
     top: 0;
     right: 0;
-    z-index: 99;
+    z-index: 100;
     // box-shadow: 2px 0 3px$grey-6;
     // overflow-y: scroll;
   }
@@ -76,7 +108,7 @@ export default {
       height: 50px;
       border: none;
       position: relative;
-      z-index: 100;
+      z-index: 105;
       appearance: none;
       cursor: pointer;
       outline: none;
@@ -103,6 +135,8 @@ export default {
         }
       }
       &.active {
+        // position:fixed;
+        // z-index: 105;
         .top {
           transform: rotate(-45deg);
         }
@@ -139,7 +173,7 @@ export default {
         transition: 0.4s ease;
 
         &:hover {
-          background: lightgrey;
+          background: var(--primary-color);
           color: dimgrey;
         }
       }
@@ -163,5 +197,11 @@ export default {
   transform: translateX(200px);
   transition: 0.5s ease;
   opacity: 0;
+}
+
+@media (max-width: 575px) {
+  #sidemenu {
+    display: block;
+  }
 }
 </style>

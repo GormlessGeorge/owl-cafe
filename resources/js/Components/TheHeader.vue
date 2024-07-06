@@ -1,70 +1,74 @@
 <template>
-  <header class="header">
-    <!-- переделать под линки -->
-    <Link href="/"
-      ><img class="header__logo" src="/img/logo.png" alt="logo"
-    /></Link>
+  <div class="scroll-compensation" ref="scrollCompensation"></div>
+  <header class="header" ref="headRef">
+    <MainContainer>
+      <div class="header__content">
+        <Link href="/"
+          ><img class="header__logo" src="/img/logo.png" alt="logo"
+        /></Link>
+        <a class="header__phone-mobile" href="tel:89999999">+7-918-85-45-45</a>
+        <nav class="header__nav">
+          <ul>
+            <li>
+              <Link
+                href="/"
+                :class="{ active: $page.url === '/' }"
+                class="header__link"
+                >ГЛАВНАЯ</Link
+              >
+            </li>
 
-    <nav class="header__nav">
-      <ul>
-        <li>
-          <Link
-            href="/"
-            :class="{ active: $page.url === '/' }"
-            class="header__link"
-            >ГЛАВНАЯ</Link
-          >
-        </li>
+            <li>
+              <Link
+                href="/menu"
+                class="header__link"
+                :class="{ active: $page.url === '/menu' }"
+                >МЕНЮ</Link
+              >
+            </li>
 
-        <li>
-          <Link
-            href="/menu"
-            class="header__link"
-            :class="{ active: $page.url === '/menu' }"
-            >МЕНЮ</Link
-          >
-        </li>
+            <li>
+              <Link
+                href="/about-us"
+                :class="{ active: $page.url === '/about-us' }"
+                class="header__link"
+              >
+                О НАС</Link
+              >
+            </li>
+            <li>
+              <Link
+                href="/contacts"
+                :class="{ active: $page.url === '/contacts' }"
+                class="header__link"
+              >
+                КОНТАКТЫ
+              </Link>
+            </li>
 
-        <li>
-          <Link
-            href="/about-us"
-            :class="{ active: $page.url === '/about-us' }"
-            class="header__link"
-          >
-            О НАС</Link
-          >
-        </li>
-        <li>
-          <Link
-            href="/contacts"
-            :class="{ active: $page.url === '/contacts' }"
-            class="header__link"
-          >
-            КОНТАКТЫ
-          </Link>
-        </li>
+            <li class="header__cart-link">
+              <Link
+                href="/cart"
+                :class="{ active: $page.url === '/cart' }"
+                class="header__link"
+                >КОРЗИНА</Link
+              >
+              <transition name="fade">
+                <div v-if="cartSize" class="header__cart-amount">
+                  <p>{{ cartSize }}</p>
+                </div>
+              </transition>
+            </li>
+          </ul>
+        </nav>
 
-        <li class="header__cart-link">
-          <Link
-            href="/cart"
-            :class="{ active: $page.url === '/cart' }"
-            class="header__link"
-            >КОРЗИНА</Link
-          >
-          <transition name="fade">
-            <div v-if="cartSize" class="header__cart-amount">
-              <p>{{ cartSize }}</p>
-            </div>
-          </transition>
-        </li>
-      </ul>
-    </nav>
-
-    <BurgerMenu></BurgerMenu>
-    <div class="header__info">
-      <a class="header__phone" href="tel:89999999">+7-918-85-45-45</a>
-      <p class="header__hours">с 08:00 до 21:00</p>
-    </div>
+        <BurgerMenu></BurgerMenu>
+        <div class="header__info">
+          <a class="header__phone" href="tel:89999999">+7-918-85-45-45</a>
+          <p class="header__hours">с 08:00 до 21:00</p>
+        </div>
+      </div>
+    </MainContainer>
   </header>
 </template>
 
@@ -72,7 +76,10 @@
 import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { usePage } from "@inertiajs/vue3";
-import BurgerMenu from '../Components/BurgerMenu.vue';
+import BurgerMenu from "../Components/BurgerMenu.vue";
+import { defineComponent, ref } from "vue";
+import { onMounted } from "@vue/runtime-core";
+import MainContainer from "@/Layouts/MainContainer.vue";
 
 const page = usePage();
 
@@ -80,16 +87,38 @@ const cartSize = computed(() => page.props.cart.cartSize);
 defineProps({
   linkClass: String,
 });
+const scrollCompensation = ref(null);
+const headRef = ref(null); 
+onMounted(() => {
+  if (window.innerWidth <= 575) {
+    window.addEventListener("scroll", () => {
+      console.log(window.innerWidth);
+      var curr = window.scrollY;
+      // You can style header-bg for style purpose
+
+      if (curr >= 5) {
+        headRef.value.classList.add("header-scroll");
+        scrollCompensation.value.classList.add("scroll-compensation-active");
+      } else {
+        headRef.value.classList.remove("header-scroll");
+        scrollCompensation.value.classList.remove("scroll-compensation-active");
+      }
+    });
+  }
+});
 </script>
 
 
 <style scoped lang="scss">
 .header {
-  display: flex;
-  height: 135px;
-  align-items: center;
-  justify-content: space-between;
+  transition: all 0.5s ease;
 
+  &__content {
+    height: 135px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__logo {
     width: 205px;
     height: 65px;
@@ -163,6 +192,9 @@ defineProps({
       transform: scale(1.03);
     }
   }
+  &__phone-mobile {
+    display: none;
+  }
 }
 
 .active {
@@ -181,8 +213,25 @@ defineProps({
 }
 
 @media (max-width: 575px) {
-  .header {
+  .scroll-compensation {
+    display: none;
     height: 80px;
+    &-active {
+      display: block;
+    }
+  }
+  .header.header-scroll {
+    z-index: 500;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.966);
+    position: fixed;
+    width: 100%;
+  }
+  .header {
+    // height: 80px;
+    &__content {
+      height: 80px;
+    }
     &__logo {
       width: 105px;
       height: 35px;
@@ -190,8 +239,14 @@ defineProps({
     &__nav {
       display: none;
     }
-    &__info { 
+    &__info {
       display: none;
+    }
+    &__phone-mobile {
+      display: block;
+      font-size: 14px;
+      color: var(--primary-color);
+      font-weight: 600;
     }
   }
 }

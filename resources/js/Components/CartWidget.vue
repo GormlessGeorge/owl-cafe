@@ -123,7 +123,7 @@ const removeHighlight = (event) => {
   opacity: 0;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
   .cart-widget {
     width: 65px;
     height: 65px;

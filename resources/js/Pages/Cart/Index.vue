@@ -196,9 +196,12 @@ const moveTextDown = (event) => {
 
 <style scoped lang="scss">
 .cart {
-  min-height: 1200px;
+  min-height: 1000px;
   position: relative;
   padding-bottom: 100px;
+  &__empty {
+    margin-top: 30px;
+  }
   &__title {
     margin-top: 50px;
     font-size: 36px;
@@ -585,6 +588,7 @@ $color2: #f96237;
 
 @media (max-width: 576px) {
   .cart {
+    min-height: 700px;
     &__title {
       font-size: 30px;
     }

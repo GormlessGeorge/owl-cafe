@@ -5,7 +5,7 @@
             <img class="owl-icon" src="/icons/owl_icon.png" alt="owl icon">
                <carousel :breakpoints="breakpoints" :pauseAutoplayOnHover="true" :wrapAround="true" :transition="500" snapAlign="start" :autoplay="3000" :items-to-show="4">
                  <slide v-for="recommendedItem in recommendedMenuItems" :key="recommendedItem.id">
-                    <MenuItemCard  :menuItem="recommendedItem" :imageUrl="'storage/' + recommendedItem.image_path"/>
+                    <MenuItemCard class="card-visible" :menuItem="recommendedItem" :imageUrl="'storage/' + recommendedItem.image_path"/>
                  </slide>
              
                   <template #addons>
