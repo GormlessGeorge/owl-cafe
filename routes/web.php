@@ -14,6 +14,8 @@ use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\ContactsPageController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderController;
+
 
 //user routes
 Route::get('/', [IndexController::class, 'index'])->name('mainpage.index');
@@ -26,12 +28,16 @@ Route::post('/payment', [PaymentController::class, 'create']);
 // Route::post('/menu', [MenuPageController::class, 'shit']);
 // Route::post('/menu', [MenuPageController::class, 'shit']);
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart']);
-Route::get('/clear-cart', [CartPageController::class, 'clearCart']);
+// Route::get('/clear-cart', [CartPageController::class, 'clearCart']);
 Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart']);
+Route::get('/remove-from-cart-all/{id}', [CartController::class, 'removeAllFromCart']);
+Route::post('/create-order', [OrderController::class, 'store']);
+
+
 //admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminPageController::class, 'index']);
-    
+    Route::get('/admin/orders', [OrderController::class, 'index']);
 
     Route::resource('admin/categories', CategoryController::class);
     Route::resource('admin/menu-items', MenuItemController::class);

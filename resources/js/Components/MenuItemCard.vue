@@ -8,7 +8,7 @@
       {{ truncate(menuItem.ingredients, 55) }}
     </p>
     <div class="card__item-lower">
-      <p class="card__item-price">{{ menuItem.price + " руб." }}</p>
+      <p class="card__item-price">{{ truncatePrice(menuItem.price,3) + " руб." }}</p>
       <p class="card__item-weight">{{ menuItem.weight + " гр." }}</p>
       <Link
         class="card__item-add"
@@ -47,6 +47,13 @@ const showModal = ref(false);
 function truncate(value, length) {
   if (value.length > length) {
     return value.substring(0, length) + "...";
+  } else {
+    return value;
+  }
+}
+function truncatePrice(value, length) {
+  if (value.length > length) {
+    return value.substring(0, length);
   } else {
     return value;
   }

@@ -21,6 +21,7 @@ class CartPageController extends Controller
     {
         session()->forget('shoppingCart');
         session()->forget('cartSize');
+        session()->forget('cartTotalAmount');
         
     }
 

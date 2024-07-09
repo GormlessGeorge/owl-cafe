@@ -75,6 +75,16 @@
                     </div>
                 </div>
         </MainContainer>
+        <img
+      class="contacts__mushrooms contacts__mushrooms-left"
+      src="/img/mushrooms.png"
+      alt="mushrooms image"
+    />
+    <img
+      class="contacts__mushrooms contacts__mushrooms-right"
+      src="/img/mushrooms2.png"
+      alt="mushrooms image"
+    />
     </section>
     <CartWidget></CartWidget>
     <TheFooter></TheFooter>
@@ -153,7 +163,46 @@ import CartWidget from "@/Components/CartWidget.vue";
     height: 460px;
     right: 6%;
     iframe {
-        border-radius: 10px;
+      border-radius: 10px;
+    }
+  }
+  &__mushrooms {
+    display: block;
+    position: absolute;
+    z-index: -10;
+
+    &-left {
+      top: 30%;
+      left: 0;
+    }
+
+    &-right {
+      top: 30%;
+      right: 0;
+    }
+  }
+}
+@media (max-width: 575px) {
+  .contacts {
+    padding-bottom: 170px;
+    &__title {
+      font-size: 30px;
+    }
+    &__wrapper {
+      flex-direction: column;
+    }
+    &__block {
+      width: 320px;
+      height: 420px;
+    }
+    &__map {
+      width: 320px;
+      height: 400px;
+      right: 0%;
+      iframe {
+        width: 320px;
+        height: 400px;
+      }
     }
   }
 }

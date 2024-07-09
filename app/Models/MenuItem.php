@@ -13,7 +13,8 @@ class MenuItem extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class)->withPivot('discount', 'amount');
+        return $this->belongsToMany(Order::class, 'order_menu_items')
+            ->withPivot('quantity'); // Добавляем поле quantity из pivot таблицы
     }
     public function category()
     {

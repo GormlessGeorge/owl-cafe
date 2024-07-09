@@ -58,7 +58,7 @@
         </nav>
 
         <div class="footer-upper__info">
-          <a class="footer-upper__phone" href="tel:89999999">+7-918-85-45-45</a>
+          <a class="footer-upper__phone" href="tel:89999999">+7 (8672) 94-92-82</a>
         </div>
       </div>
       <div class="footer__social">

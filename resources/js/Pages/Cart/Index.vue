@@ -1,32 +1,33 @@
 <template lang="">
     <section class="cart">
+      <TheHeader></TheHeader>
         <MainContainer>
-            <TheHeader></TheHeader>
+            
             <h2 class="cart__title">Оформление заказа</h2>
             <h3 class="cart__empty" v-if="!cartSize">Ваша корзина пуста</h3>
             <Button class="btn__cart" v-if="!cartSize"><Link class="cart__menu-link" href="/menu">Меню</Link></Button>
             <div class="cart__wrapper" v-if="cartSize">
 
-                <form class="order-form" id="orderForm">
+                <form class="order-form" id="orderForm" @submit.prevent="createOrder">
                     <div class="order-form__contact-info block-wrapper">
                         <p class="block-wrapper__title">Контактная информация</p>
                         
                         <div class="inputs-flex">
                             <div class="input-wrapper input-wrapper__name">
                                 <label for="name"></label>
-                                <input name="name" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
+                                <input id="name" v-model="form.name" name="name" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
                                 <p class="input-wrapper__text" ref="nameSpan">Имя получателя<span> *</span></p>
                             </div>
 
                             <div class="input-wrapper input-wrapper__phone">
                                 <label for="phone"></label>
-                                <input name="phone" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="tel" required>
+                                <input id="phone" v-model="form.phone" name="phone" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="tel" required>
                                 <p class="input-wrapper__text" ref="phoneSpan">Номер телефона<span> *</span></p>
                             </div>
 
                             <div class="input-wrapper input-wrapper__email">
                                 <label for="email"></label>
-                                <input name="email" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="email" required>
+                                <input id="email" v-model="form.email" name="email" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="email" required>
                                 <p class="input-wrapper__text" ref="emailSpan">E-mail<span> *</span></p>
                             </div>
                         </div>
@@ -34,18 +35,18 @@
 
                     <div class="order-form__comment block-wrapper">
                         <p class="block-wrapper__title">Комментарий к заказу</p>
-                        <textarea class="order-form__input-comment" placeholder="Текст сообщения"></textarea>
+                        <textarea v-model="form.commentary" class="order-form__input-comment" placeholder="Текст сообщения"></textarea>
                     </div>
 
                     <div class="order-form__delivery-type block-wrapper">
                         <p class="block-wrapper__title">Способ доставки</p>
                         <div class="radio-buttons__flex">
                             <div class="radio" @click="shown = false">
-                                 <input id="radio-1" name="delivery" type="radio" checked value="Самовывоз">
+                                 <input v-model="form.deliveryType" id="radio-1" name="delivery" type="radio" checked value="Самовывоз">
                                  <label for="radio-1" class="radio-label">Самовывоз</label>
                             </div>
                             <div class="radio radio__right" @click="shown = true">
-                                 <input id="radio-2"  name="delivery" type="radio" value="Курьер">
+                                 <input v-model="form.deliveryType" id="radio-2"  name="delivery" type="radio" value="Курьер">
                                  <label for="radio-2" class="radio-label">Курьер</label>
                             </div>
                         </div>
@@ -58,19 +59,19 @@
                             <div class="inputs-flex">
                                 <div class="input-wrapper input-wrapper__street">
                                     <label for="street"></label>
-                                    <input name="street" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
+                                    <input name="street" v-model="form.street" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
                                     <p class="input-wrapper__text">Улица<span> *</span></p>
                                 </div>
 
                                 <div class="input-wrapper input-wrapper__house">
                                     <label for="house"></label>
-                                    <input name="house" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
+                                    <input name="house" v-model="form.houseNumber" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
                                     <p class="input-wrapper__text">Дом<span> *</span></p>
                                 </div>
 
                                 <div class="input-wrapper input-wrapper__flat">
                                     <label for="flat"></label>
-                                    <input name="flat" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
+                                    <input id="flat" name="flat" v-model="form.flatNumber" @focus="moveTextUp($event)" @blur="moveTextDown($event)" type="text" required maxlength="60">
                                     <p class="input-wrapper__text">Квартира<span> *</span></p>
                                 </div>
                             </div>
@@ -97,16 +98,16 @@
                         <p class="block-wrapper__title">Способ оплаты</p>
                         <div class="radio-buttons__flex radio-buttons__flex-payment-type">
                         <div class="radio">
-                                 <input id="radio-5" name="payment" type="radio" checked value="Онлайн">
+                                 <input id="radio-5" v-model="form.paymentType" name="payment" type="radio" disabled value="Онлайн">
                                  <label for="radio-5" class="radio-label">Онлайн</label>
                             </div>
                             <div class="radio radio__right">
-                                 <input id="radio-6"  name="payment" type="radio"  value="Наличные при получении">
+                                 <input id="radio-6" v-model="form.paymentType" name="payment" type="radio" checked  value="Наличными при получении">
                                  <label for="radio-6" class="radio-label">Наличными</label>
                                  <p class="radio-label__cash">При получении</p>
                             </div>
                             <div class="radio radio__right">
-                                 <input id="radio-7"  name="payment" type="radio"  value="Картой при получении">
+                                 <input id="radio-7" v-model="form.paymentType" name="payment" type="radio"  value="Картой при получении">
                                  <label for="radio-7" class="radio-label">Картой</label>
                                  <p class="radio-label__cash">При получении</p>
                             </div>
@@ -129,10 +130,17 @@
                               <p class="cart__item-name">{{cartItem.name}}</p>
                               
                               <p class="cart__item-weight">{{cartItem.weight + ' гр.'}}</p>
-                              <p class="cart__item-price">{{cartItem.amount + ' x ' + cartItem.price + ' руб.'}}</p>
-                              
+                              <p class="cart__item-price">{{truncatePrice(cartItem.price, 3) + ' руб.'}}</p>
+                              <div class="cart__item-buttons">
+                                <Link class="cart__item-decrease cart__item-button" :href="`/remove-from-cart/${cartItem.menuItemId}`" as="button" method="get"
+                                :data="{ menuItemId: cartItem.id }" preserve-state preserve-scroll>&minus;</Link>
+                                
+                                <p class="cart__item-amount">{{cartItem.amount}}</p>
+                                <Link class="cart__item-increase cart__item-button" :href="`/add-to-cart/${cartItem.menuItemId}`" as="button" method="get"
+                                :data="{ menuItemId: cartItem.id }" preserve-state preserve-scroll>&plus;</Link>
+                              </div>
                               <div class="cart__item-close-icon">
-                                  <Link :href="`/remove-from-cart/${cartItem.menuItemId}`" as="button" method="get"
+                                  <Link :href="`/remove-from-cart-all/${cartItem.menuItemId}`" as="button" method="get"
                               :data="{ menuItemId: cartItem.id }" preserve-state preserve-scroll> 
                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_445_646)">
@@ -146,17 +154,15 @@
                               </svg> 
                               </Link>
                               </div>
-                            <!-- <p>{{cartItem.menuItemId}}</p> -->
                          </div>
                       </transition-group>
-
                 </div>
               </div>
             
               <p class="cart__to-pay" v-if="cartSize">К оплате: {{cartTotalAmount}}</p>
                     
                     
-                    <Button v-if="cartSize" btnClass="cart__create-order-btn" type="submit" form="orderForm" >Оформить заказ</Button>
+                    <Button v-if="cartSize" buttonClass="btn__cart" type="submit" form="orderForm" >Оформить заказ</Button>
             <!-- <Link href="clear-cart" method="get" preserve-state preserve-scroll>Очистисть корзину</Link> -->
         </MainContainer>
         
@@ -170,12 +176,12 @@
 import MainContainer from "../../Layouts/MainContainer.vue";
 import TheFooter from "../../Components/TheFooter.vue";
 import { ref, onMounted, computed } from "vue";
-import { Link, usePage } from "@inertiajs/vue3";
+import { Link, usePage, useForm, router} from "@inertiajs/vue3";
 
 const page = usePage();
 const cartTotalAmount = computed(() => page.props.cart.cartTotalAmount);
 const cartSize = computed(() => page.props.cart.cartSize);
-defineProps({
+const props = defineProps({
   shoppingCart: Object,
   // menuItems: Array
 });
@@ -192,6 +198,30 @@ const moveTextDown = (event) => {
     event.target.nextElementSibling.classList.remove("active");
   }
 };
+
+const form = useForm('CreateOrder',{
+  name: "",
+  phone: "",
+  email: "",
+  commentary: "",
+  deliveryType: "Самовывоз",
+  street: "",
+  houseNumber: "",
+  flatNumber: "",
+  paymentType: "Наличными при получении"
+});
+
+function createOrder() {
+  router.post("/create-order", [form, props.shoppingCart, cartTotalAmount.value]);
+}
+
+function truncatePrice(value, length) {
+  if (value.length > length) {
+    return value.substring(0, length);
+  } else {
+    return value;
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -214,13 +244,12 @@ const moveTextDown = (event) => {
     display: flex;
     height: 100%;
     width: 100%;
-    /* text-align: center; */
     justify-content: center;
     align-items: center;
   }
 
   &__empty {
-    font-size: 20px;
+    font-size: 18px;
   }
   &__wrapper {
     margin-top: 75px;
@@ -232,7 +261,7 @@ const moveTextDown = (event) => {
   &__item {
     position: relative;
     display: grid;
-    grid-template-columns: 90px 1fr;
+    grid-template-columns: 90px 1fr 120px;
     grid-template-rows: 25px 25px 30px;
     column-gap: 15px;
     row-gap: 5px;
@@ -243,7 +272,6 @@ const moveTextDown = (event) => {
       width: 90px;
       height: 90px;
 
-      // border-radius: 10px;
       img {
         width: 100%;
         height: 100%;
@@ -251,21 +279,46 @@ const moveTextDown = (event) => {
         border-radius: 10px;
       }
     }
-
+    &-buttons {
+      display: flex;
+      width: 100px;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      justify-self: end;
+    }
+    &-button {
+      display: block;
+      width: 25px;
+      height: 25px;
+      border-radius: 5px;
+      background-color: var(--background-color);
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: var(--primary-color);
+        color: var(--background-color);
+      }
+    }
+    &-amount {
+      font-size: 18px;
+      font-weight: 500;
+    }
     &-name {
       font-size: 18px;
       font-weight: 600;
+      grid-column: 2 / 4;
     }
 
     &-weight {
-      // margin-top: 5px;
       font-size: 16px;
       font-weight: 300;
+      grid-column: 2 / 3;
     }
 
     &-price {
       font-size: 18px;
       font-weight: 600;
+      grid-column: 2 / 3;
     }
 
     &-close-icon {
@@ -273,7 +326,7 @@ const moveTextDown = (event) => {
       height: 25px;
       display: block;
       position: absolute;
-      right: 0;
+      right: 10px;
 
       svg {
         display: block;
@@ -383,7 +436,6 @@ const moveTextDown = (event) => {
 
 .order-form {
   width: 590px;
-  // height: 100px;
 
   &__contact-info {
     width: 100%;
@@ -426,6 +478,7 @@ const moveTextDown = (event) => {
   }
 
   &__order-time {
+    display: none;
     margin-top: 20px;
     width: 100%;
     height: 120px;
@@ -438,9 +491,6 @@ const moveTextDown = (event) => {
   }
 
   &__input-text {
-    // padding: 15px 0 15px 0;
-    // width: 250px;
-    // height: 50px;
     border: 0;
     border-bottom: 1px solid rgba(51, 51, 51, 0.45);
     transition: all 0.3s ease-in-out;
@@ -471,7 +521,6 @@ const moveTextDown = (event) => {
   display: flex;
   flex-direction: row;
   margin-top: 25px;
-  // height: 100px;
 }
 
 $color1: #ffffff;
@@ -540,6 +589,7 @@ $color2: #f96237;
     }
 
     + .radio-label {
+      width: 100%;
       &:empty {
         &:before {
           margin-right: 0;
@@ -605,7 +655,7 @@ $color2: #f96237;
     &__item {
       position: relative;
       display: grid;
-      grid-template-columns: 90px 150px;
+      grid-template-columns: 90px 90px;
       grid-template-rows: 53px 25px 30px;
       -moz-column-gap: 15px;
       column-gap: 15px;
@@ -613,7 +663,12 @@ $color2: #f96237;
       &-name {
         font-size: 16px;
       }
-      
+      &-close-icon {
+        right: -5px;
+      }
+      &-price {
+        font-size: 16px;
+      }
     }
     &__dumplings {
       display: none;
@@ -679,7 +734,5 @@ $color2: #f96237;
   .radio__right {
     margin-left: 0;
   }
-
-  
 }
 </style>

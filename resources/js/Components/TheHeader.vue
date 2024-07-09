@@ -64,7 +64,7 @@
 
         <BurgerMenu></BurgerMenu>
         <div class="header__info">
-          <a class="header__phone" href="tel:89999999">+7-918-85-45-45</a>
+          <a class="header__phone" href="tel:89999999">+7 (8672) 94-92-82</a>
           <p class="header__hours">с 08:00 до 21:00</p>
         </div>
       </div>

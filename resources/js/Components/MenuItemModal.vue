@@ -157,6 +157,16 @@ const closeModal = () => {
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     }
   }
+  &__close {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 5px;
+      right: 5px;
+    }
 }
 
 .modal-enter-active,
@@ -221,12 +231,6 @@ const closeModal = () => {
     }
 
     &__close {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       top: -3px;
       right: -5px;
     }

@@ -56,11 +56,11 @@ class CartController extends Controller
         // return $shoppingCart;
     }
 
-    
+
 
     public function removeFromCart(int $menuItemId)
     {
-        
+
         $shoppingCart = session('shoppingCart', []);
         $cartSize = session('cartSize', 0);
 
@@ -81,8 +81,30 @@ class CartController extends Controller
         $total = $this->calculateTotalAmount();
         session(['cartSize' => $cartSize]);
         session(['cartTotalAmount' => $total]);
-
     }
+
+    public function removeAllFromCart(int $menuItemId)
+    {
+        $shoppingCart = session('shoppingCart', []);
+        $cartSize = session('cartSize', 0);
+
+        if (!isset($shoppingCart[$menuItemId])) {
+            // Should not happen, and should throw an error.
+            return null;
+        } else {
+            $menuItemAmount = $shoppingCart[$menuItemId]['amount'];
+            unset($shoppingCart[$menuItemId]);
+            $cartSize -= $menuItemAmount;
+            
+        }
+
+        session(['shoppingCart' => $shoppingCart]);
+        $total = $this->calculateTotalAmount();
+        session(['cartSize' => $cartSize]);
+        session(['cartTotalAmount' => $total]);
+    }
+
+
 
     public function calculateTotalAmount()
     {
